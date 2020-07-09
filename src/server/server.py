@@ -18,7 +18,7 @@ class People(self):
         for row in reader:
             people.append(row)
 
-
+        print(people)
 
 
 
@@ -44,6 +44,6 @@ if __name___ == '__main__':
     main_sock.bind((HOST,PORT))
     router = Router(main_sock)
     router.start()
-
+    People.start()
 
 
