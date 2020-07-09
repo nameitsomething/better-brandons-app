@@ -1,26 +1,51 @@
 from socket import *
 from csv import *
-import threading
+from threading import *
 
 HOST = ""
 PORT = 12346
 
 main_sock = socket()
-clients =[]
+clients = []
+
+class present:
+    def __init__(self,name,age,grade,present):
+        self.name = name
+        self.age = age
+        self.grade = grade
+        self.present = present
 
 
-class People(self):
-    people = []
+class People:
+    def __init__(self):
+        self.students = []
 
-    with open ('list.csv', newline=' ') as file:
-        reader = csv.reader(file, delimiter=',')
+    def read(self):
+        with open ('people.csv',"r", newline=' ') as file:
+            reader = csv.reader(file, delimiter=',')
 
-        for row in reader:
-            people.append(row)
+            for row in reader:
+                thing = present(row[0],row[1],row[2],row[3])
+                students.append(thing)
+                print(thing)     
 
-        print(people)
+    def write(self):
+        with open ('people.csv', "w", newline='') as file:
+            writer = csv.writer(file,delimiter=',')
+
+            for s in self.students:
+                writer.writerow(s)
+                print(s)
 
 
+class Jetson_Client(Client):  # Will interface with the jetson
+    pass
+
+class User_Client(Client):  # Will interface with the client app
+    pass
+
+class Client(Thread):
+    def __init__(self, )
 
 
 class Router(Thread):
@@ -32,18 +57,23 @@ class Router(Thread):
 
     def run(self):
         while self.running:
-            conn,addr =self.sock.accept()
-            session = Session(conn)
-            if session not in clients: #adds new session
-                session.start()
-                clients.append(session)
+            conn,addr = self.sock.accept()
 
 
 
-if __name___ == '__main__':
-    main_sock.bind((HOST,PORT))
-    router = Router(main_sock)
-    router.start()
-    People.start()
+if __name__ == '__main__':
+
+    main_sock.bind((HOST,PORT))  # Connect the server to the port
+    main_sock.listen(0)
+
+    rounter = Router(main_sock)
+    rounter.start()
+
+    test = People()
+    test.read()
+    test.write()
+
+
+
 
 
