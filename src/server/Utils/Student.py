@@ -10,3 +10,9 @@ class Student:
 
     def check_out(self):
         self.present = False
+
+    def full_to_bytes(self):
+        temp = f"{self.name},{self.age},{self.grade},{self.present}"
+        return str.encode(temp)
+
+    def half

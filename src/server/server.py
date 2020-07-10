@@ -13,6 +13,7 @@ PORT = 12346
 main_sock = socket()
 clients = []
 school = School()
+student = Student()
 running = True
 
 
@@ -25,27 +26,33 @@ class Jetson(Thread):
     def wait_for_reponse(self):
         pass
 
+    def run(self)-> None:
+        pass
+
 
 class User(Thread):
     def __init__(self, conn:socket):
         Thread.__init__(self)
         self.conn = conn
+        self.sock = conn
         pass
 
     def wait_for_request(self):
+        # recv a command
+        command = int.from_bytes(self.sock.recv(2),"big")
+        if command == 2:
+            self.sock.sendall()
+            self.sock.sendall(student.full_to_bytes())
+            print("sent full")
+
+        # decode command
+
+        # respond by sending
         pass
 
+    def run(self)->None:
+        pass
 
-class Router(Thread):
-    def __init__(self, conn:socket):
-        Thread.__init__(self)
-        self.sock = conn
-        self.sock.listen()
-        self.running = True
-
-    def run(self):
-        while self.running:
-            conn,addr = self.sock.accept()
 
 def login(conn:socket):
     # do login thing
@@ -60,10 +67,8 @@ def login(conn:socket):
     elif data[0] == "user123" and data[1]=="12346": #correct usename and password for user
         temp = User(conn)
         temp.start() #starts user thread
+        print("new user")
         return temp 
-
-
-
 
 
 if __name__ == '__main__':
@@ -74,9 +79,6 @@ if __name__ == '__main__':
     while running:
         conn,addr = main_sock.accept()
         clients.append(login) #sticks it the return from login into clients
-
-    rounter = Router(main_sock)
-    rounter.start()
     
 
 
