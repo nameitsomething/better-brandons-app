@@ -1,51 +1,39 @@
 from socket import *
 from csv import *
 from threading import *
+from Utils.School import School
+from Utils.Student import Student
+import struct
 
 HOST = ""
 PORT = 12346
 
+# 3.128.156.248
+
 main_sock = socket()
 clients = []
-
-class present:
-    def __init__(self,name,age,grade,present):
-        self.name = name
-        self.age = age
-        self.grade = grade
-        self.present = present
+school = School()
+running = True
 
 
-class People:
-    def __init__(self):
-        self.students = []
+class Jetson(Thread):
+    def __init__(self, conn:socket):
+        Thread.__init__(self)
+        self.conn = conn
+        pass
 
-    def read(self):
-        with open ('people.csv',"r", newline=' ') as file:
-            reader = csv.reader(file, delimiter=',')
-
-            for row in reader:
-                thing = present(row[0],row[1],row[2],row[3])
-                students.append(thing)
-                print(thing)     
-
-    def write(self):
-        with open ('people.csv', "w", newline='') as file:
-            writer = csv.writer(file,delimiter=',')
-
-            for s in self.students:
-                writer.writerow(s)
-                print(s)
+    def wait_for_reponse(self):
+        pass
 
 
-class Jetson_Client(Client):  # Will interface with the jetson
-    pass
+class User(Thread):
+    def __init__(self, conn:socket):
+        Thread.__init__(self)
+        self.conn = conn
+        pass
 
-class User_Client(Client):  # Will interface with the client app
-    pass
-
-class Client(Thread):
-    def __init__(self, )
+    def wait_for_request(self):
+        pass
 
 
 class Router(Thread):
@@ -59,19 +47,37 @@ class Router(Thread):
         while self.running:
             conn,addr = self.sock.accept()
 
+def login(conn:socket):
+    # do login thing
+    conn.sendall(struct.pack("B",1))
+    data = conn.recv(128).decode().split(',') # gets username / pass and spilts it
+
+    if data[0] == "jet123" and data[1] == "12345": #correct username and password for jetson
+        temp = Jetson(conn) #store jetson in temp
+        temp.start() # starts jetson thread
+        return temp
+
+    elif data[0] == "user123" and data[1]=="12346": #correct usename and password for user
+        temp = User(conn)
+        temp.start() #starts user thread
+        return temp 
+
+
+
 
 
 if __name__ == '__main__':
 
     main_sock.bind((HOST,PORT))  # Connect the server to the port
-    main_sock.listen(0)
+    main_sock.listen(4)
+
+    while running:
+        conn,addr = main_sock.accept()
+        clients.append(login) #sticks it the return from login into clients
 
     rounter = Router(main_sock)
     rounter.start()
-
-    test = People()
-    test.read()
-    test.write()
+    
 
 
 
