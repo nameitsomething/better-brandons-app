@@ -76,7 +76,7 @@ if __name__ == '__main__':
 
     while running:
         conn,addr = main_sock.accept()
-        clients.append(login #sticks it the return from login into clients
+        clients.append(login(conn)) #sticks it the return from login into clients
     
 
 

@@ -1,0 +1,2 @@
+1 == request login from user
+2,<name> == request person by name form server, response->(<name>,<age>,<grade>,<present>)
