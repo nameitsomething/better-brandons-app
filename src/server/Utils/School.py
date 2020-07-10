@@ -1,6 +1,8 @@
 from Utils.Student import Student
 import csv
 
+
+
 class School:
     def __init__(self):
         self.students = []
@@ -17,6 +19,7 @@ class School:
     def find_info(self, name: str):
         for s in self.students:
             if s.name is name:
+                Student.full_to_bytes(s)
                 return s
 
     def write(self): #writes the info in the list back into the file
