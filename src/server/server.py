@@ -41,7 +41,7 @@ class User(Thread):
         # recv a command
         data = self.sock.recv(64).decode().split(",") # Decode
         command = data[0] # locate command
-        if command == 2: # decide
+        if command == '2': # decide
             self.sock.sendall(school.find_info(data[1]).full_to_bytes()) # respond
             print("sent full student info")
 
@@ -76,7 +76,7 @@ if __name__ == '__main__':
 
     while running:
         conn,addr = main_sock.accept()
-        clients.append(login) #sticks it the return from login into clients
+        clients.append(login #sticks it the return from login into clients
     
 
 

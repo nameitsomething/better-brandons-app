@@ -17,6 +17,7 @@ sock = socket()
 
 
 sock.connect((HOST,PORT)) #connects to server
+data = sock.recv(2).decode()
 sock.sendall(str.encode(info)) #sends username and password
 
 print("Logged on")
@@ -24,7 +25,7 @@ print("Logged on")
 info = f"{command},{person}" 
 sock.sendall(str.encode(info))
 
-data = sock.recv(128)
+data = sock.recv(128).decode()
 print(data)
 
 
