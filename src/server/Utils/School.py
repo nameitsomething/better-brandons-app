@@ -11,8 +11,13 @@ class School:
 
             for row in reader: 
                 thing = Student(row[0],row[1],row[2],row[3]) #uses the student class to seperate the stuff
-                students.append(thing) #appends stuff to the list
+                self.students.append(thing) #appends stuff to the list
                 print(thing)     
+
+    def find_info(self, name: str):
+        for s in self.students:
+            if s.name is name:
+                return s
 
     def write(self): #writes the info in the list back into the file
         with open ('people.csv', "w", newline='') as file:

@@ -13,7 +13,6 @@ PORT = 12346
 main_sock = socket()
 clients = []
 school = School()
-student = Student()
 running = True
 
 
@@ -39,10 +38,10 @@ class User(Thread):
 
     def wait_for_request(self):
         # recv a command
-        command = int.from_bytes(self.sock.recv(2),"big")
+        data = self.sock.recv(64).decode().split(",")
+        command = data[0]
         if command == 2:
-            self.sock.sendall()
-            self.sock.sendall(student.full_to_bytes())
+            self.sock.sendall(school.find_info(data[1]).full_to_bytes())
             print("sent full")
 
         # decode command
