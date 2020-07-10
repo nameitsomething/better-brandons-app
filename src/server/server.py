@@ -32,22 +32,24 @@ class Jetson(Thread):
 class User(Thread):
     def __init__(self, conn:socket):
         Thread.__init__(self)
-        self.conn = conn
         self.sock = conn
+        self.running = True
         print("Created User Thread")
         pass
 
     def wait_for_request(self):
         # recv a command
-        data = self.sock.recv(64).decode().split(",") # Decode
-        command = data[0] # locate command
+        data = self.sock.recv(128).decode().split(",") # Decode
+        command = data[0] # locate com(mand
         if command == '2': # decide
+            print("in there")
             self.sock.sendall(school.find_info(data[1]).full_to_bytes()) # respond
             print("sent full student info")
 
 
     def run(self)->None:
-        pass
+        while self.running:
+            self.wait_for_request()
 
 
 def login(conn:socket):
