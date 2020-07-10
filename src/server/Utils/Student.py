@@ -14,5 +14,3 @@ class Student:
     def full_to_bytes(self):
         temp = f"{self.name},{self.age},{self.grade},{self.present}"
         return str.encode(temp)
-
-    def half
