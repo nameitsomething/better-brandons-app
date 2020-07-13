@@ -10,7 +10,7 @@ user = 'user123'
 pw = '12346'
 info = f"{user},{pw}"
 command = 2
-person = 'ulanda'
+person = "chicken"
 
 
 sock = socket()

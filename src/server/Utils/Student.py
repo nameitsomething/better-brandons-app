@@ -11,6 +11,15 @@ class Student:
     def check_out(self):
         self.present = False
 
+    def full_to_csv(self):
+        temp = []
+        temp.append(self.name)
+        temp.append(self.age)
+        temp.append(self.grade)
+        temp.append(self.present)
+
+        return temp
+
     def full_to_bytes(self):
         temp = f"{self.name},{self.age},{self.grade},{self.present}"
         return str.encode(temp)
