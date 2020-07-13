@@ -35,6 +35,7 @@ class User(Thread):
         self.sock = conn
         self.running = True
         print("Created User Thread")
+        school.read()
         pass
 
     def wait_for_request(self):
@@ -43,6 +44,7 @@ class User(Thread):
         command = data[0] # locate com(mand
         if command == '2': # decide
             print("in there")
+            print(data[1])
             self.sock.sendall(school.find_info(data[1]).full_to_bytes()) # respond
             print("sent full student info")
 

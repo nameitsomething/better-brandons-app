@@ -5,7 +5,7 @@ name = "chicken"
 info = ""
 
 school = School()
-school.read()s
+school.read()
 
 # school.add_student("chicken",1000000,13,False)
 

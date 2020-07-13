@@ -9,7 +9,7 @@ PORT = 12346
 user = 'user123'
 pw = '12346'
 info = f"{user},{pw}"
-command = 2
+command = '2'
 person = "chicken"
 
 
@@ -25,7 +25,7 @@ print("Logged on")
 info = f"{command},{person}" 
 sock.sendall(str.encode(info))
 
-data = sock.recv(128)
+data = sock.recv(128).decode()
 print(data)
 
 
