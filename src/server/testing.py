@@ -1,23 +1,39 @@
 from Utils.School import School
 from Utils.Student import Student
+from Utils.Course import Course
 
-name = "chicken"
+name = "bruh"
 info = ""
+course = "death"
 
 school = School()
+
 school.read()
 
-# school.add_student("chicken",1000000,13,False)
+temp = Student("bruh",222222229,858485,False)
 
-# school.write()
+school.add_student(temp)
 
-print(school.find_info(name).age)
+
+#school.write()
+
+temp = Course("death","teaching people the 101 of killing","666")
+
+school.add_course(temp)
+
+print(school.find_course_info(course).description)
+
+school.remove_student(name)
+
+school.write()
+
 
 # print(info.age)
 
 
 
 # make a dummy thing to test out if the funtion form the students actually works for not....... 
+# also testing out the course thing
 
 
 

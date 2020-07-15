@@ -17,7 +17,6 @@ class Student:
         temp.append(self.age)
         temp.append(self.grade)
         temp.append(self.present)
-
         return temp
 
     def full_to_bytes(self):
