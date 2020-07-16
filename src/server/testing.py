@@ -23,7 +23,7 @@ school.add_course(temp)
 
 print(school.find_course_info(course).description)
 
-school.remove_student(name)
+school.remove_student(name) # use student object
 
 school.write()
 
