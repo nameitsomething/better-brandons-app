@@ -140,6 +140,15 @@ class Course:
                 if s.student_number == number:
                     self.students.remove(s) 
 
+    def full_to_csv_course(self):
+        temp = []
+        temp.append(self.course_name)
+        temp.append(self.description)
+        temp.append(self.section)
+        temp.append(self.course_num)
+        temp.append(self.students)
+        return temp
+
         
 
 

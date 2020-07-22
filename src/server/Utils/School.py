@@ -36,7 +36,14 @@ class School:
 
                 thing = Student(str(row[0]),int(row[1]),int(row[2]),temp) #uses the student class to seperate the stuff
                 self.students.append(thing) #appends stuff to the list
-                     
+
+        with open('course.csv',"r",newline='') as file:
+            reader = csv.reader(file, delimiter=',')
+
+            for row in reader:
+                thing = Course(str(row[0]),str(row[1]),int(row[2]),int(row[3]))
+                self.courses.append(thing)
+                
 
     def find_student_info(self, name: str= None, number: int = None): #finds info for studet and return
         if name != None:
@@ -80,6 +87,12 @@ class School:
 
             for s in self.students: #think of the list as a container and s is for rows, so it writes out info in list
                 writer.writerow(s.full_to_csv()) #writes onto file
+
+        with open('course.csv',"w",newline='') as file:
+            writer = csv.writer(file,delimiter=',')
+
+            for c in self.courses:
+                writer.writerow(c.full_to_csv_course())
     
 
     def remove_student(self, student): #yeet students in space by student     
