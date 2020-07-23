@@ -104,11 +104,6 @@ class User(Thread):
         elif command == 20: #check in student by number
             school.check_in_student_by_number(data[1])
 
-        
-        elif command == 100: # kill user
-            self.running = False
-            # send kill sig to user
-
         elif command == 21: #check out
             school.check_out_student(data[1])
 
@@ -117,6 +112,14 @@ class User(Thread):
 
         elif command == 23: #check ou student 
             school.check_out_student_by_number(data[1])
+
+        elif command == 66:
+            running = False
+            self.running = False
+
+        elif command == 100: # kill user
+            self.running = False
+            # send kill sig to user
 
     def run(self)->None:
         while self.running:
