@@ -31,7 +31,7 @@ sock.sendall(temp)
 data = sock.recv(128).decode()
 print(data)
 
-sock.sendall(str.encode(f"{100}"))
+sock.sendall(str.encode(f"{66}"))
 
 
 

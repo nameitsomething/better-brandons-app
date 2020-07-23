@@ -114,8 +114,9 @@ class User(Thread):
             school.check_out_student_by_number(data[1])
 
         elif command == 66:
-            running = False
             self.running = False
+            self.sock.detach()
+            exit(0)
 
         elif command == 100: # kill user
             self.running = False
