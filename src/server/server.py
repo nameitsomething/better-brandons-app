@@ -120,7 +120,10 @@ class User(Thread):
 
     def run(self)->None:
         while self.running:
-            self.wait_for_request()
+            try:
+                self.wait_for_request()
+            except timeout as tim:
+                print(tim)
         self.sock.detach()
 
 

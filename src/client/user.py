@@ -23,9 +23,6 @@ sock.sendall(str.encode(info)) #sends username and password
 
 print("Logged on")
 
-
-temp = struct.pack('B', command)
-
 info = f"{command},{person}"
 temp = str.encode(info)
 
@@ -33,6 +30,8 @@ sock.sendall(temp)
 
 data = sock.recv(128).decode()
 print(data)
+
+sock.sendall(str.encode(f"{100}"))
 
 
 
