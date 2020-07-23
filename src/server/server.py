@@ -41,7 +41,7 @@ class User(Thread):
     def wait_for_request(self):
         # recv a command
         data = self.sock.recv(128).decode().split(",") # Decode
-        #command = int.from_bytes(data[0],"big") # locate command
+        command = int(data[0]) # locate command
 
         if command == 2: # decide, send student info command
             print("in there")
