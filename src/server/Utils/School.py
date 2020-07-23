@@ -45,39 +45,61 @@ class School:
                 self.courses.append(thing)
                 
 
-    def find_student_info(self, name: str= None, number: int = None): #finds info for studet and return
+    def find_student_info(self, name): #finds info for studet and return
         if name != None:
             for s in self.students:
                 if s.name == name:
                     return s
         
-        elif number != None:
-            for s in self.students:
-                if s.student_number == number:
-                    return s
 
     def find_course_info(self, course_name: str): # find info for courses 
         for c in self.courses:
             if c.course_name == course_name:
                 return c
 
-    def check_in_student(self, student:Student, name: str, number: int): #master attendence
+    def check_in_student(self, student:Student): #master attendence
         if student != None:
             for s in self.students:
                 if s.name == student.name:
                     s.check_in()
+                    return True
 
     def check_in_student_by_name_(self, name):
         if name !=None:
             for s in self.students:
                 if s.name == name:
                     s.check_in()
+                    return True
 
     def check_in_student_by_number(self, number):
         if number !=None:
             for s in self.students:
                 if s.number == number:
                     s.check_in()
+                    return True
+
+    def check_out_student(self, student:Student): #master attendence
+        if student != None:
+            for s in self.students:
+                if s.name == student.name:
+                    s.check_out()
+                    return True
+
+    def check_out_student_by_name_(self, name):
+        if name !=None:
+            for s in self.students:
+                if s.name == name:
+                    s.check_out()
+                    return True
+
+    def check_out_student_by_number(self, number):
+        if number !=None:
+            for s in self.students:
+                if s.number == number:
+                    s.check_out()
+                    return True
+
+    
 
 
 
@@ -147,6 +169,12 @@ class School:
             if c.course_name == name and c.section == section:
                 self.courses.remove(c)
                 print("course remove")
+
+    def remove_course_by_number(self,number,section):
+        for c in self.courses:
+            if c.course_number == number and c.section == section:
+                self.courses.remove(c)
+                print("remove course by num")
     
 
     def add_time(self):
@@ -164,8 +192,6 @@ class School:
                     temp_student = s
                     print("student is now temp")
 
-        if temp_student == None:
-            return False
 
         if course != None:
             for c in self.courses:
@@ -194,6 +220,9 @@ class School:
                 if c.course_name == course_name and c.section == course_section:
                     c.add_student(temp_student)
                     print("sutdent added")
+                    return True
+
+            return False
 
 
     def add_student_to_course_by_number(self,student_number:int,course_number:int, course_section:int):
@@ -246,6 +275,9 @@ class School:
                 if c.name == course_name and c.section == course_section:
                     c.remove_student(temp_student)
                     print("removed student from course by name")
+                    return True
+
+            return False
 
 
     def remove_student_from_course_by_number(self,student_number:int,course_number:int, course_section:int):

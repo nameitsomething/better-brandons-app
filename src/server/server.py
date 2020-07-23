@@ -40,18 +40,91 @@ class User(Thread):
 
     def wait_for_request(self):
         # recv a command
-        data = self.sock.recv(128).decode().split(",") # Decode
-        command = data[0] # locate com(mand
-        if command == '2': # decide
+        data = self.sock.recv(128) # Decode
+        data2 = self.sock.recv(256).decode().split(',')
+        command = int.from_bytes(data[0]) # locate command
+
+        if command == 2: # decide, send student info command
             print("in there")
-            print(data[1])
-            self.sock.sendall(school.find_info(data[1]).full_to_bytes()) # respond
+            print(data2[0])
+            self.sock.sendall(school.find_student_info(data2[0]).full_to_bytes()) # respond
             print("sent full student info")
 
+        elif command == 3: #ask for course info
+            self.sock.sendall(school.find_course_info(data2[0]).to_bytes())
+            print("sent course data")
+
+        elif command == 4: # add student
+            school.add_student(data2[0])
+
+        elif command == 5: #remove student
+            school.remove_student(data2[0])
+
+        elif command == 6: #  remove student by name
+            school.remove_student_by_name(data2[0])
+
+        elif command == 7: #remove student by numbers
+            school.remove_student_by_number(data2[0])
+
+        elif command == 8: #add course
+            school.add_course(data2[0])
+
+        elif command == 9: #remove course
+            school.remove_course(data2[0])
+
+        elif command == 10: #remove course by name
+            school.remove_course_by_name(data2[0],data2[1])
+
+        elif command == 11: #remove course by number
+            school.remove_course_by_number(data2[0],data2[1])
+
+        elif command == 12: #add student to course
+            school.add_student_to_course(data2[0],data2[1])
+
+        elif command == 13: #add student to course by name
+            school.add_student_to_course_by_name(data2[0],data2[1],data2[2])
+
+        elif command == 14: #add student to course by number
+            school.add_student_to_course_by_number(data2[0],data2[1],data2[2])
+
+        elif command == 15: #remove student from course
+            school.remove_student_from_course(data2[0],data2[1])
+
+        elif command == 16: #remove student from course by name
+            school.remove_student_from_course_by_name(data2[0],data2[1],data2[2])
+
+        elif command == 17: #remove student from course by number
+            school.remove_student_from_course_by_number(data2[0],data2[1],data2[2])
+
+        elif command == 18: #check in student
+            school.check_in_student(data2[0])
+
+        elif command == 19: #check in student by name
+            school.check_in_student_by_name_(data2[0])
+
+        elif command == 20: #check in student by number
+            school.check_in_student_by_number(data2[0])
+
+        
+        elif command == 100: # kill user
+            self.running = False
+            # send kill sig to user
+
+        elif command == 21: #check out
+            school.check_out_student(data2[0])
+
+        elif command == 22: #check out student by name
+            school.check_out_student_by_name_(data2[0])
+
+        elif command == 23: #check ou student by number
+            school.check_out_student_by_number(data2[0])
+
+            
 
     def run(self)->None:
         while self.running:
             self.wait_for_request()
+        self.sock.detach()
 
 
 def login(conn:socket):

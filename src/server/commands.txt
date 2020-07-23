@@ -1,2 +1,28 @@
 1 == request login from user
 2,<name> == request person by name form server, response->(<name>,<age>,<grade>,<present>)
+3,<course> == request course info
+4,<student object> == add student
+5,<student> == remove student
+6,<student_name> == remove student by name
+7,<student_num> == remove student by number
+8,<course> == add course
+9,<course> == remove course
+10,<course_name,section> == remove course by name
+11,<course_number,section> == remove course by number
+12,<student,course> == add student to course
+13,<student_name,course_name,section> == add student to course by name
+14,<student_num, course_number,section> == add student to course by number
+15,<student,course> == remove student from course
+16,<student_name,course_name,section> == remove student from course by name
+17,<student_num,course_number,section> == remove student from course by number
+18,<student> == check in student
+19,<student_name> == check in student by name
+20,<student_num> == check in student by number
+21,<student> == check out student
+22,<student_name> == check out student by name
+23,<student_num> == check out student by number
+
+
+100 == kill
+
+

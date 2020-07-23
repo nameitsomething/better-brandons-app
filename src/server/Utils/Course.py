@@ -149,6 +149,10 @@ class Course:
         temp.append(self.students)
         return temp
 
+    def to_bytes(self):
+        temp = f"{self.course_name}{self.description}{self.section}{self.course_num}{self.students}"
+        return str.encode(temp)
+
         
 
 

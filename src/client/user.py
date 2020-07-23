@@ -1,5 +1,6 @@
 
 from socket import *
+import struct
 
 
 
@@ -9,8 +10,8 @@ PORT = 12346
 user = 'user123'
 pw = '12346'
 info = f"{user},{pw}"
-command = '2'
-person = "chicken"
+command = 2
+thing = "chicken"
 
 
 sock = socket()
@@ -22,8 +23,8 @@ sock.sendall(str.encode(info)) #sends username and password
 
 print("Logged on")
 
-info = f"{command},{person}" 
-sock.sendall(str.encode(info))
+sock.sendall(struct.pack(command,"big"))
+sock.sendall(str.encode(thing))
 
 data = sock.recv(128).decode()
 print(data)
