@@ -42,7 +42,7 @@ class User(Thread):
         # recv a command
         data = self.sock.recv(128) # Decode
         data2 = self.sock.recv(256).decode().split(',')
-        command = int.from_bytes(data[0]) # locate command
+        command = int.from_bytes(data,"big") # locate command
 
         if command == 2: # decide, send student info command
             print("in there")
@@ -119,7 +119,7 @@ class User(Thread):
         elif command == 23: #check ou student by number
             school.check_out_student_by_number(data2[0])
 
-            
+
 
     def run(self)->None:
         while self.running:

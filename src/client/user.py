@@ -23,7 +23,7 @@ sock.sendall(str.encode(info)) #sends username and password
 
 print("Logged on")
 
-sock.sendall(struct.pack(command,"big"))
+sock.sendall(struct.pack('B',command))
 sock.sendall(str.encode(thing))
 
 data = sock.recv(128).decode()
