@@ -11,7 +11,7 @@ user = 'user123'
 pw = '12346'
 info = f"{user},{pw}"
 command = 2
-thing = "chicken"
+person = "chicken"
 
 
 sock = socket()
@@ -23,8 +23,11 @@ sock.sendall(str.encode(info)) #sends username and password
 
 print("Logged on")
 
-sock.sendall(struct.pack('B',command))
-sock.sendall(str.encode(thing))
+
+temp = struct.pack('B', command)
+
+info = "f{temp}{person}"
+sock.sendall(str.encode(info))
 
 data = sock.recv(128).decode()
 print(data)
