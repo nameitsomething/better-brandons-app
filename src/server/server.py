@@ -43,7 +43,8 @@ class User(Thread):
 
         data = self.sock.recv(128).decode().split(",") # Decode
         command = int(data[0]) # locate command and yionks it
-        school.read()
+        print(command)
+        
 
         if command == 2: # decide, send student info command
             print("in there")
@@ -118,15 +119,13 @@ class User(Thread):
         elif command == 24: #send all school info
             student = school.send_student_info()
             course = school.send_course_info()
-            self.sock.sendall(str.encode(f"{student.__len__},{course.__len__}"))
+            self.sock.sendall(str.encode(f"{len(student)},{len(course)}"))
 
             for s in student:
-                temp = f"{s}"
-                self.sock.sendall(str.encode(temp))
+                self.sock.sendall(str.encode(s))
 
             for c in course:
-                temp = f"{c}"
-                self.sock.sendall(str.encode(temp))
+                self.sock.sendall(str.encode(c))
 
 
 
