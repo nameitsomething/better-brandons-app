@@ -121,10 +121,12 @@ class User(Thread):
             self.sock.sendall(str.encode(f"{student.__len__},{course.__len__}"))
 
             for s in student:
-                self.sock.sendall(str.encode(s))
+                temp = f"{s}"
+                self.sock.sendall(str.encode(temp))
 
             for c in course:
-                self.sock.sendall(str.encode(c))
+                temp = f"{c}"
+                self.sock.sendall(str.encode(temp))
 
 
 

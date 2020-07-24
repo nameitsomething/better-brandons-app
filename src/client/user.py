@@ -33,17 +33,17 @@ sock.sendall(temp)
 
 data = sock.recv(128).decode().split(',')
 
-for i in range(data[0]):
+for i in range(int(data[0])):
     temp = sock.recv(1048).decode()
     bruh_the_first.append(temp)
     print(temp)
 
-for i in range(data[1]):
+for i in range(int(data[1])):
     temp = sock.recv(2048).decode()
     bruh_the_second.append(temp)
     print(temp)
     
-    
+
 
 sock.sendall(str.encode(f"{66}"))
 
