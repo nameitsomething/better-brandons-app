@@ -123,10 +123,12 @@ class User(Thread):
 
             for s in student:
                 temp =f"{s}"
+                print(temp)
                 self.sock.sendall(str.encode(temp))
 
             for c in course:
                 temp = f"{c}"
+                print(temp)
                 self.sock.sendall(str.encode(temp))
 
 
