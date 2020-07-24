@@ -23,6 +23,16 @@ class School:
             self.students.append(student)
             return True
  
+    def send_student_info(self):
+        temp= self.students
+
+        return temp
+
+    def send_course_info(self):
+        temp = self.courses
+
+        return temp
+        
 
     def read(self): #reads the file and puts it into the list
         with open ('people.csv',"r", newline='') as file:

@@ -40,8 +40,10 @@ class User(Thread):
 
     def wait_for_request(self):
         # recv a command
+
         data = self.sock.recv(128).decode().split(",") # Decode
-        command = int(data[0]) # locate command
+        command = int(data[0]) # locate command and yionks it
+        school.read()
 
         if command == 2: # decide, send student info command
             print("in there")
@@ -49,8 +51,8 @@ class User(Thread):
             self.sock.sendall(school.find_student_info(data[1]).full_to_bytes()) # respond
             print("sent full student info")
 
-        elif command == 3: #ask for course info
-            self.sock.sendall(school.find_course_info(data[1]).to_bytes())
+        elif command == 3: #ask for course info and sends course ingo
+            self.sock.sendall(school.find_course_info(data[1]).to_bytes()) #yeets the course info
             print("sent course data")
 
         elif command == 4: # add student
@@ -104,21 +106,34 @@ class User(Thread):
         elif command == 20: #check in student by number
             school.check_in_student_by_number(data[1])
 
-        elif command == 21: #check out
+        elif command == 21: #check out student
             school.check_out_student(data[1])
 
         elif command == 22: #check out student by name
             school.check_out_student_by_name_(data[1])
 
-        elif command == 23: #check ou student 
+        elif command == 23: #check out student by number
             school.check_out_student_by_number(data[1])
 
-        elif command == 66:
+        elif command == 24: #send all school info
+            student = school.send_student_info()
+            course = school.send_course_info()
+            self.sock.sendall(str.encode(f"{student.__len__},{course.__len__}"))
+
+            for s in student:
+                self.sock.sendall(str.encode(s))
+
+            for c in course:
+                self.sock.sendall(str.encode(c))
+
+
+
+        elif command == 66: #murder the server and yeet everything into oblvion and yeetus yourself
             self.running = False
             self.sock.detach()
             exit(0)
 
-        elif command == 100: # kill user
+        elif command == 100: # kill user 
             self.running = False
             # send kill sig to user
 

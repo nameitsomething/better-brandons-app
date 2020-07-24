@@ -21,8 +21,9 @@
 21,<student> == check out student
 22,<student_name> == check out student by name
 23,<student_num> == check out student by number
+24 == request all info from school
 
-
-100 == kill
+66 == kill everything
+100 == kill user
 
 
