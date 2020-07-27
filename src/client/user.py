@@ -4,6 +4,7 @@ import struct
 
 
 
+
 HOST  = '3.128.156.248'
 PORT = 12346
 
@@ -19,14 +20,6 @@ bruh_the_second = []
 
 sock = socket()
 
-class Student:
-    def __init__(self,name,age:int,grade:int,present:bool, number:int):
-        self.name = name
-        self.age = age
-        self.grade = grade
-        self.present = present
-        self.sutdent_number = number
-    
 
 sock.connect((HOST,PORT)) #connects to server
 data = sock.recv(2)
