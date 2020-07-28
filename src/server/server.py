@@ -130,8 +130,8 @@ class User(Thread):
             
             for c in course:
                 temp = f"{c}"
-                    print(temp)
-                    self.sock.sendall(str.encode(temp))
+                print(temp)
+                self.sock.sendall(str.encode(temp))
 
                 else:
                     for t in temp:
