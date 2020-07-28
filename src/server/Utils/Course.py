@@ -1,4 +1,4 @@
-from Utils.Student import Student
+from server.Utils.Student import Student
 from datetime import datetime
 
 class Course:
