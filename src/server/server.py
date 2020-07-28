@@ -133,9 +133,7 @@ class User(Thread):
                 print(temp)
                 self.sock.sendall(str.encode(temp))
 
-                else:
-                    for t in temp:
-                        self.sock.sendall(str.encode(t))
+            
             
             temp = None
 
