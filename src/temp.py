@@ -1,4 +1,4 @@
-temp = f"{2}"
+temp = f"{2},{},{}"
 temp = str.encode(temp)
 
 print(temp)
